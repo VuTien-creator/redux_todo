@@ -1,10 +1,9 @@
+import { Button, Col, Input, Row, Select, Tag } from "antd";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Input, Button, Select, Tag } from "antd";
 
 import { v4 as uuidv4 } from "uuid";
 
-import { addTodo } from "../redux/actions";
 import Todo from "../Todo/Todo";
 
 import { todoRemainingSelector } from "../redux/selectors";
@@ -67,7 +66,7 @@ function TodoList() {
                 <Input.Group style={{ display: "flex" }} compact>
                     <Input name="name" value={todoName} onChange={handleInputChange} />
                     <Select defaultValue="Medium" value={priority} onChange={handlePriorityChange} id="select">
-                        <Select.Option value="High" label="High">
+                        <Select.Option value="Hight" label="High">
                             <Tag color="red" id="high">
                                 High
                             </Tag>
@@ -89,3 +88,4 @@ function TodoList() {
 }
 
 export default TodoList;
+
