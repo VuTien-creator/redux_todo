@@ -15,7 +15,6 @@
 //     }
 // ]
 
-
 // const todoListReducer = (state = inittialState, action) => {
 
 //     /**
@@ -43,28 +42,22 @@
 
 // export default todoListReducer
 
-import { createSlice } from '@reduxjs/toolkit'
-import * as constants from '../redux/constants'
+import { createSlice } from "@reduxjs/toolkit";
+import * as constants from "../redux/constants";
 const todoListSlice = createSlice({
-    name: 'todoList',
-    initialState: [
-        { id: 1, name: 'Learn React', completed: true, priority: 'Medium' },
-        { id: 2, name: 'Learn Javascript', completed: false, priority: 'Low' },
-        { id: 3, name: 'Learn Redux', completed: false, priority: 'High' },
-    ],
+    name: "todoList",
+    initialState: [],
     reducers: {
         [constants.ADD_TO_DO]: (state, action) => {
-            state.push(action.payload)
+            state.push(action.payload);
         },
         [constants.TOGGLE_COMPLETE]: (state, action) => {
-            const currentTodo = state.find(todo =>
-                todo.id === action.payload
-            )
-            if(currentTodo){
-                currentTodo.completed = !currentTodo.completed
+            const currentTodo = state.find((todo) => todo.id === action.payload);
+            if (currentTodo) {
+                currentTodo.completed = !currentTodo.completed;
             }
         },
-    }
-})
+    },
+});
 
-export default todoListSlice
+export default todoListSlice;
