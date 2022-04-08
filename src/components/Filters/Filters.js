@@ -1,59 +1,55 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { Col, Row, Input, Typography, Radio, Select, Tag } from 'antd'
-import filtersSlice from './FiltersSlice'
+import { Col, Input, Radio, Row, Typography } from "antd";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import filtersSlice from "./FiltersSlice";
 
 // import * as actions from '../redux/actions'
 
-const { Search } = Input
+const { Search } = Input;
 
 function Filters() {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
-    const [searchText, setSearchText] = useState('')
+    const [searchText, setSearchText] = useState("");
 
-    const [searchStatus, setSearchStatus] = useState('All')
+    const [searchStatus, setSearchStatus] = useState("All");
 
-    const [searchPriority, setSearchPriority] = useState([])
-
+    // const [searchPriority, setSearchPriority] = useState([]);
 
     const handleInputSearch = (e) => {
-        setSearchText(e.target.value)
-        dispatch(filtersSlice.actions.search(e.target.value))
-    }
+        setSearchText(e.target.value);
+        dispatch(filtersSlice.actions.search(e.target.value));
+    };
 
     const handleSearchStatusChange = (e) => {
-        setSearchStatus(e.target.value)
-        dispatch(filtersSlice.actions.status(e.target.value))
-    }
+        setSearchStatus(e.target.value);
+        dispatch(filtersSlice.actions.status(e.target.value));
+    };
 
-    const handleSearchPriority = (value) => {
-        setSearchPriority(value)
-        dispatch(filtersSlice.actions.priority(value))
-    }
+    // const handleSearchPriority = (value) => {
+    //     setSearchPriority(value);
+    //     dispatch(filtersSlice.actions.priority(value));
+    // };
+
     return (
-        <Row justify='center'>
+        <Row justify="center">
             <Col span={24}>
-                <Typography.Paragraph
-                    style={{ fontWeight: 'bold', marginBottom: 3, marginTop: 10 }}
-                >
+                <Typography.Paragraph style={{ fontWeight: "bold", marginBottom: 3, marginTop: 10 }}>
                     Serach
                 </Typography.Paragraph>
                 <Search placeholder="Input search text" value={searchText} onChange={handleInputSearch} />
             </Col>
             <Col sm={24}>
-                <Typography.Paragraph
-                    style={{ fontWeight: 'bold', marginBottom: 3, marginTop: 10 }}
-                >
+                <Typography.Paragraph style={{ fontWeight: "bold", marginBottom: 3, marginTop: 10 }}>
                     Filter By Status
                 </Typography.Paragraph>
-                <Radio.Group value={searchStatus} onChange={handleSearchStatusChange} >
+                <Radio.Group value={searchStatus} onChange={handleSearchStatusChange}>
                     <Radio value="All">All</Radio>
                     <Radio value="Completed">Completed</Radio>
                     <Radio value="Todo">Todo</Radio>
                 </Radio.Group>
             </Col>
-            <Col sm={24}>
+            {/* <Col sm={24}>
                 <Typography.Paragraph
                     style={{ fontWeight: 'bold', marginBottom: 3, marginTop: 10 }}
                 >
@@ -78,9 +74,10 @@ function Filters() {
                         <Tag color="gray">Low</Tag>
                     </Select.Option>
                 </Select>
-            </Col>
+            </Col> */}
         </Row>
-    )
+    );
 }
 
-export default Filters
+export default Filters;
+

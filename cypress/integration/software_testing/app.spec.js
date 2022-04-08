@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 const todos = ["First Todo", "Second Todo", "Third Todo"];
 
 const todoInputSelector = "input[name=name]";

@@ -13,23 +13,16 @@ import todoListSlice from "./TodoListSlice";
 function TodoList() {
     const todoList = useSelector(todoRemainingSelector);
 
-    // const searchText = useSelector(searchTextSelector)
-
     const [todoName, setTodoName] = useState("");
     const [priority, setPriority] = useState("Medium");
 
     const dispatch = useDispatch();
 
     const handleAddButtonClick = () => {
+        // if (!todoName) {
+        //     return;
+        // }
         dispatch(
-            // addTodo(
-            //     {
-            //         id: uuidv4(),
-            //         name: todoName,
-            //         priority: priority,
-            //         completed: false
-            //     }
-            // )
             todoListSlice.actions.addTodo({
                 id: uuidv4(),
                 name: todoName,
@@ -57,8 +50,8 @@ function TodoList() {
     };
 
     return (
-        <Row style={{ heght: "calc(100% - 40px)" }}>
-            <Col span={24} style={{ heght: "calc(100% - 40px)", overflowY: "auto" }} id="todo_container">
+        <Row style={{ height: "calc(100% - 40px)" }}>
+            <Col span={24} style={{ height: "calc(100% - 40px)", overflowY: "auto" }} id="todo_container">
                 {renderTodoList()}
             </Col>
 
