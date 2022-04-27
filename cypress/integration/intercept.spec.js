@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import uuidv4 from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 const todos = ["First Todo", "Second Todo", "Third Todo"];
 
@@ -10,15 +10,12 @@ const searchInputSelector = "input[placeholder='Input search text']";
 
 describe("Software Testing", () => {
     before(() => {
-        cy.intercept("POST", "https://apis.encacap.com:22400/todos", (req) => {
-            const todo = JSON.parse(req.body);
+        cy.intercept("POST", "https://apis.encacap.dev:22400/todos", (req) => {
+            const todo = req.body;
             todo.id = uuidv4();
-            return {
-                body: {
-                    data: todo,
-                },
-                status: 200,
-            };
+            req.reply({
+                data: todo,
+            });
         }).as("addTodo");
     });
 
@@ -26,7 +23,7 @@ describe("Software Testing", () => {
         cy.visit("http://localhost:3000");
     });
 
-    it("Should add a new todo if data is OK", () => {
+    it.only("Should add a new todo if data is OK", () => {
         cy.get(todoInputSelector).type(todos[0]).should("have.value", todos[0]);
         cy.get(addTodoButtonSelector).click();
         cy.get(todosContainerSelector).should("contain", todos[0]);
