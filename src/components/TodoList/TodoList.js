@@ -2,12 +2,11 @@ import { Button, Col, Input, Row, Select, Tag } from "antd";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { v4 as uuidv4 } from "uuid";
-
 import Todo from "../Todo/Todo";
 
 import { todoRemainingSelector } from "../redux/selectors";
 
+import axios from "axios";
 import todoListSlice from "./TodoListSlice";
 
 function TodoList() {
@@ -20,14 +19,22 @@ function TodoList() {
 
     const handleAddButtonClick = () => {
         if (!todoName.trim()) return;
-        dispatch(
-            todoListSlice.actions.addTodo({
-                id: uuidv4(),
+        axios
+            .post("https://apis.encacap.dev:22400/todos", {
                 name: todoName,
-                priority: priority,
-                completed: false,
+                priority,
             })
-        );
+            .then((res) => {
+                const {
+                    data: { data },
+                } = res;
+                dispatch(
+                    todoListSlice.actions.addTodo({
+                        ...data,
+                        id: data._id,
+                    })
+                );
+            });
         setTodoName("");
         setPriority("Medium");
     };
