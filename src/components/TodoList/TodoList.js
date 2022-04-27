@@ -19,6 +19,7 @@ function TodoList() {
     const dispatch = useDispatch();
 
     const handleAddButtonClick = () => {
+        if (!todoName.trim()) return;
         dispatch(
             todoListSlice.actions.addTodo({
                 id: uuidv4(),
