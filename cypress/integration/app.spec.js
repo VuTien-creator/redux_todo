@@ -4,6 +4,7 @@ const todos = ["First Todo", "Second Todo", "Third Todo"];
 
 const todoInputSelector = "input[name=name]";
 const todosContainerSelector = "#todo_container";
+const addTodoButtonSelector = "#add_todo";
 const searchInputSelector = "input[placeholder='Input search text']";
 
 describe("Software Testing", () => {
@@ -11,20 +12,20 @@ describe("Software Testing", () => {
         cy.visit("http://localhost:3000");
     });
 
-    it("Should add a new todo if data is good", () => {
+    it("Should add a new todo if data is OK", () => {
         cy.get(todoInputSelector).type(todos[0]).should("have.value", todos[0]);
-        cy.get("#add_todo").click();
-        cy.get("#todo_container").should("contain", todos[0]);
+        cy.get(addTodoButtonSelector).click();
+        cy.get(todosContainerSelector).should("contain", todos[0]);
     });
 
     it("Should not add a new todo if data is bad", () => {
-        cy.get("#add_todo").click();
+        cy.get(addTodoButtonSelector).click();
         cy.get(todosContainerSelector).children().should("have.length", 0);
     });
 
     it("Should toggle todo when click on input", () => {
         cy.get(todoInputSelector).type(todos[0]).should("have.value", todos[0]);
-        cy.get("#add_todo").click();
+        cy.get(addTodoButtonSelector).click();
 
         cy.get(todosContainerSelector).children().should("have.length", 1);
 
