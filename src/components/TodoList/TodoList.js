@@ -19,9 +19,6 @@ function TodoList() {
     const dispatch = useDispatch();
 
     const handleAddButtonClick = () => {
-        // if (!todoName) {
-        //     return;
-        // }
         dispatch(
             todoListSlice.actions.addTodo({
                 id: uuidv4(),

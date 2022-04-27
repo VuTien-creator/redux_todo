@@ -20,7 +20,7 @@ describe("Software Testing", () => {
 
     it("Should not add a new todo if data is bad", () => {
         cy.get(addTodoButtonSelector).click();
-        cy.get(todosContainerSelector).children().should("have.length", 0);
+        cy.get(todosContainerSelector).should("to.be.empty");
     });
 
     it("Should toggle todo when click on input", () => {
